@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>ArmandoFlix</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="/fivecon/fivecon-armando-flix.png" type="image/x-icon">
+</head>
+<body>
+
+    <!-- Fundo desfocado -->
+    <div id="fundo-blur"></div>
+
+    <div class="detalhes-container">
+
+        <img id="poster">
+
+        <div class="detalhes-info">
+
+            <h1 id="titulo"></h1>
+
+            <p id="descricao"></p>
+
+            <p><strong>Nota:</strong> <span id="nota"></span></p>
+
+            <p><strong>Data:</strong> <span id="data"></span></p>
+
+            <!-- Onde vão aparecer os botões -->
+            <div id="plataformas"></div>
+
+            <!-- botão assistir adicionado -->
+            <a id="assistir" href="#" class="btn btn-info" style="display:none; margin-right:8px;" target="_blank" rel="noopener">Assistir</a>
+
+            <a href="index.html" class="btn btn-play">Voltar</a>
+        </div>
+    </div>
+     <!-- Container do Trailer -->
+    <div class="trailer-section">
+        <h2>Trailer</h2>
+        <div id="trailer-container">
+            <p>Carregando trailer...</p>
+        </div>
+    </div>
+
+    <script src="detalhes.js"></script>
+</body>
+
+</html>
