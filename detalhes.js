@@ -13,7 +13,7 @@ if (movieId) {
 
 // Carregar detalhes do filme
 function carregarDetalhes(id) {
-    const url = `http://localhost:3000/api/filme/${id}`
+    const url = `${CONFIG.BASE_URL}/movie/${id}?api_key=${CONFIG.API_KEY}&language=${CONFIG.LANGUAGE}`
 
     fetch(url)
         .then(res => res.json())
@@ -86,7 +86,7 @@ function carregarDetalhes(id) {
 
 // Buscar plataformas de streaming
 function buscarPlataformas(id) {
-    const url = `http://localhost:3000/api/filme/${id}/plataformas`
+    const url = `${CONFIG.BASE_URL}/movie/${id}/watch/providers?api_key=${CONFIG.API_KEY}`
 
     fetch(url)
         .then(res => res.json())
@@ -127,7 +127,7 @@ function buscarPlataformas(id) {
 function carregarTrailer(id) {
     console.log("Buscando trailer para ID:", id)
     
-    const url = `http://localhost:3000/api/filme/${id}/videos?language=pt-BR`
+    const url = `${CONFIG.BASE_URL}/movie/${id}/videos?api_key=${CONFIG.API_KEY}&language=pt-BR`
 
     fetch(url)
         .then(res => res.json())
@@ -157,7 +157,7 @@ function carregarTrailer(id) {
 }
 
 function buscarTrailerIngles(id) {
-    const url = `http://localhost:3000/api/filme/${id}/videos?language=en-US`
+    const url = `${CONFIG.BASE_URL}/movie/${id}/videos?api_key=${CONFIG.API_KEY}&language=en-US`
 
     fetch(url)
         .then(res => res.json())

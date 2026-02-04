@@ -1,19 +1,12 @@
 
 
 
-// URLs base
-const BASE_URL = "http://localhost:3000"
-const IMG_URL = "https://image.tmdb.org/t/p/w500"
-
-// URL da API do TMDB para filmes populares em português do Brasil
-const URL = "http://localhost:3000/api/filmes"
-
-
 // Onde os filmes vão aparecer
 const divFilmes = document.getElementById('filmes')
 
+// Buscar os filmes na API do TMDB diretamente
+const URL = `${CONFIG.BASE_URL}/movie/popular?api_key=${CONFIG.API_KEY}&language=${CONFIG.LANGUAGE}`
 
-// Buscar os filmes na API
 fetch(URL)
     .then(response => response.json())
     .then(dados => {
@@ -21,7 +14,7 @@ fetch(URL)
         dados.results.forEach(filme => {
             divFilmes.innerHTML += `
             <div class="card" onclick="abrirDetalhes(${filme.id})">
-            <img src = "https://image.tmdb.org/t/p/w500${filme.poster_path}">
+            <img src = "${CONFIG.IMG_URL}${filme.poster_path}">
             <h3>${filme.title}</h3>
             <p>⭐ Nota: ${filme.vote_average} </p>
             </div>`
@@ -61,7 +54,7 @@ searchInput.addEventListener('input', function() {
 async function searchMovies(query) {
     try {
         const response = await fetch(
-            `${BASE_URL}/api/search?q=${encodeURIComponent(query)}`
+            `${CONFIG.BASE_URL}/search/movie?api_key=${CONFIG.API_KEY}&language=${CONFIG.LANGUAGE}&query=${encodeURIComponent(query)}`
         );
         const data = await response.json();
         
@@ -81,7 +74,7 @@ function displaySearchResults(movies) {
     
     searchResults.innerHTML = movies.slice(0, 5).map(movie => `
         <div class="search-result-item" onclick="goToDetails(${movie.id})">
-            <img src="${movie.poster_path ? IMG_URL + movie.poster_path : 'https://via.placeholder.com/50x75?text=Sem+Imagem'}" 
+            <img src="${movie.poster_path ? CONFIG.IMG_URL + movie.poster_path : 'https://via.placeholder.com/50x75?text=Sem+Imagem'}" 
                  alt="${movie.title}">
             <div class="search-result-info">
                 <h4>${movie.title}</h4>
@@ -112,7 +105,7 @@ function abrirDetalhes(id) {
 // BANNER - NOVOS LANÇAMENTOS
 // ===============================
 
-const URL_LANCAMENTOS = `${BASE_URL}/api/lancamentos`
+const URL_LANCAMENTOS = `${CONFIG.BASE_URL}/movie/now_playing?api_key=${CONFIG.API_KEY}&language=${CONFIG.LANGUAGE}&page=1`
 
 let filmesBanner = []
 let indiceBanner = 0
@@ -143,7 +136,7 @@ function mostrarBanner() {
     const banner = document.querySelector(".banner")
 
     banner.style.backgroundImage =
-        `url(https://image.tmdb.org/t/p/original${filme.backdrop_path})`
+        `url(${CONFIG.IMG_URL_ORIGINAL}${filme.backdrop_path})`
 
     document.getElementById("banner-title").innerText = filme.title
 
@@ -181,7 +174,7 @@ function trocarBanner() {
 // Função para buscar filmes por gênero
 function carregarCategoria(generoId, divId) {
 
-    const url = `${BASE_URL}/api/categoria/${generoId}`
+    const url = `${CONFIG.BASE_URL}/discover/movie?api_key=${CONFIG.API_KEY}&language=${CONFIG.LANGUAGE}&with_genres=${generoId}&page=1`
 
     fetch(url)
         .then(res => res.json())
@@ -193,7 +186,7 @@ function carregarCategoria(generoId, divId) {
 
                 div.innerHTML += `
                     <div class="card" onclick="abrirDetalhes(${filme.id})">
-                        <img src="https://image.tmdb.org/t/p/w500${filme.poster_path}">
+                        <img src="${CONFIG.IMG_URL}${filme.poster_path}">
                         <h3>${filme.title}</h3>
                         <p>⭐ ${filme.vote_average}</p>
                     </div>
