@@ -745,10 +745,9 @@ footer {
     }
 
     .logo img {
-        height: 100px;      /* Altura do logo maior que o header */
-        position: absolute; /* Tira o logo do fluxo, ele "flutua" */
-        z-index: 10;        /* Garante que o logo fique na frente de tudo */
-        margin-top: -40px;
+        height: 60px;
+        margin-top: 0;
+        position: relative;
     }
 
     /* Menu hamburguer */
@@ -958,6 +957,7 @@ footer {
 @media (max-width: 480px) {
     .logo img {
         height: 50px;
+        margin-top: 0;
     }
 
     #search-input {
